@@ -7,4 +7,6 @@
 /captures
 .externalNativeBuild
 
+# XinLake
 .APK
+desktop.ini
