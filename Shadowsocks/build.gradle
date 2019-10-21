@@ -1,0 +1,155 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+/**
+ * Updated: 2019.10.20
+ * TODO: Duplicated configurations are disallowed
+ * TODO: The "Manual Settings" action can't be canceled
+ * TODO: The About page
+ */
+android {
+    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.compileSdkVersion
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+    kotlinOptions.jvmTarget = javaVersion
+
+    defaultConfig {
+        BuildInfo buildInfo = updateBuildInfo()
+        resConfigs rootProject.resConfigs
+
+        applicationId "com.github.shadowsocks"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        versionCode(4 << 22 | 8 << 16 | 5 << 10 | (buildInfo.Number & 0x3FF)) //10bit.6bit.6bit.10bit
+        versionName "4.8.5-${buildInfo.Number}"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            multiDexEnabled true
+            pseudoLocalesEnabled true
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions.checkReleaseBuilds false
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+            aidl.srcDirs = ['aidl']
+            renderscript.srcDirs = ['rs']
+            jniLibs.srcDirs = ['jniLibs']
+            assets.srcDirs = ['assets']
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def apkVersion = android.defaultConfig.versionName
+        variant.outputs.each { output ->
+            //custom apk name
+            if (output.outputFileName != null && output.outputFileName.endsWith('.apk')) {
+                output.outputFileName = "${archivesBaseName}-${apkVersion}.apk"
+                //copy apk
+                variant.assembleProvider.get().doLast {
+                    copy {
+                        from output.outputFile
+                        into '../[APK]'
+                    }
+                }
+            }
+        }
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+
+    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-beta01"
+    implementation "androidx.room:room-runtime:2.2.0" // runtime
+    implementation "androidx.preference:preference:1.1.0"
+    implementation "androidx.work:work-runtime-ktx:2.2.0"
+    implementation "androidx.browser:browser:1.2.0-alpha08"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+
+    implementation "com.google.android.material:material:1.1.0-beta01"
+    implementation "com.google.code.gson:gson:2.8.5"
+
+    implementation "dnsjava:dnsjava:2.1.9"
+    implementation "org.connectbot.jsocks:jsocks:1.0.0"
+    implementation "com.afollestad.material-dialogs:core:2.6.0"
+
+    implementation files('libs/zxing-1.0.0-34.aar')
+    kapt "androidx.room:room-compiler:2.2.0"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+// xinlake =========================================================================================
+class BuildInfo {
+    public int Number
+    public String Time
+    public String Host
+}
+
+BuildInfo updateBuildInfo() {
+    File fileBuildInfo = new File("${project.projectDir}/build-info.json")
+    def jsonBuildInfo
+
+    if (fileBuildInfo.canRead()) {
+        jsonBuildInfo = new groovy.json.JsonSlurper().parseText(fileBuildInfo.text)
+
+        // Update data to the current information
+        jsonBuildInfo.Number++
+        jsonBuildInfo.Time = new Date().format("yyyy-MM-dd")
+        jsonBuildInfo.Host = "${System.getProperty("user.name")}@${InetAddress.localHost.hostName}"
+    } else {
+        jsonBuildInfo = [
+                Number: 0,
+                Time  : new Date().format("yyyy-MM-dd"),
+                Host  : "${System.getProperty("user.name")}@${InetAddress.localHost.hostName}"
+        ]
+    }
+
+    // Save data to json file
+    def jsonString = groovy.json.JsonOutput.toJson(jsonBuildInfo)
+    def jsonBeauty = groovy.json.JsonOutput.prettyPrint(jsonString)
+    fileBuildInfo.write(jsonBeauty)
+
+    return new BuildInfo(
+            Number: jsonBuildInfo.Number,
+            Time: jsonBuildInfo.Time,
+            Host: jsonBuildInfo.Host
+    )
+}

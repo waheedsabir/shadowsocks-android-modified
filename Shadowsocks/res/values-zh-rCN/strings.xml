@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shadowsocks</string>
+    <string name="send_email">"发送电子邮件"</string>
+    <!-- ssplugin -->
+    <string name="proxy_cat">"服务器设置"</string>
+    <string name="feature_cat">"功能设置"</string>
+    <string name="unsaved_changes_prompt">"是否要保存修改？"</string>
+    <string name="yes">"是"</string>
+    <string name="no">"否"</string>
+    <string name="apply">"应用"</string>
+    <string name="file_manager_missing">请安装文件管理器</string>
+    <string name="browse">"浏览…"</string>
+
+    <!-- proxy category -->
+    <string name="profile_name">"配置名称"</string>
+    <string name="proxy">"服务器"</string>
+    <string name="remote_port">"远程端口"</string>
+    <string name="sitekey">"密码"</string>
+    <string name="enc_method">"加密方式"</string>
+
+    <!-- feature category -->
+    <string name="ipv6">"IPv6 路由"</string>
+    <string name="ipv6_summary">"转发 IPv6 流量到远程服务器"</string>
+    <string name="on">"启用"</string>
+    <string name="off">"关"</string>
+    <string name="tcp_fastopen_summary">"切换可能需要 ROOT 权限"</string>
+    <string name="tcp_fastopen_summary_unsupported">"不支持的内核版本: %s &lt; 3.7.1"</string>
+    <string name="tcp_fastopen_failure">"切换失败"</string>
+    <string name="udp_dns">"使用 UDP DNS"</string>
+    <string name="udp_dns_summary">"需要远程服务器支持 UDP 转发"</string>
+
+    <!-- notification category -->
+    <string name="service_vpn">"VPN 服务"</string>
+    <string name="forward_success">"后台服务已开始运行。"</string>
+    <string name="invalid_server">"服务器名无效"</string>
+    <string name="service_failed">"无法连接远程服务器"</string>
+    <string name="stop">"停止"</string>
+    <string name="stopping">"正在关闭…"</string>
+    <string name="vpn_error">"后台服务启动失败：%s"</string>
+    <string name="vpn_permission_denied">"创建 VPN 服务权限不足"</string>
+    <string name="reboot_required">"VPN 服务启动失败。你可能需要重启设备。"</string>
+    <string name="profile_invalid_input">"未找到有效的配置文件。"</string>
+
+    <!-- alert category -->
+    <string name="profile_empty">"请选择配置文件"</string>
+    <string name="proxy_empty">"代理服务器地址及密码不能为空"</string>
+    <string name="connect">"连接"</string>
+
+    <!-- menu category -->
+    <string name="profiles">"配置文件"</string>
+    <string name="settings">"设置选项"</string>
+    <string name="about">"关于"</string>
+    <string name="about_title">Shadowsocks %s</string>
+    <string name="edit">"编辑"</string>
+    <string name="share">"分享"</string>
+    <string name="add_profile">"添加配置文件"</string>
+    <string name="action_apply_all">"应用设置到所有配置文件"</string>
+    <string name="action_export_more">"导出…"</string>
+    <string name="action_export">"导出至剪贴板"</string>
+    <string name="action_export_file">"导出至文件…"</string>
+    <string name="action_import">"从剪贴板导入"</string>
+    <string name="action_import_file">"从文件导入…"</string>
+    <string name="action_replace_file">"从文件替换…"</string>
+    <string name="action_export_msg">"导出至剪贴板成功"</string>
+    <string name="action_export_err">"导出至剪贴板失败"</string>
+    <string name="action_import_msg">"导入成功"</string>
+    <string name="action_import_err">"导入失败"</string>
+
+    <!-- profile -->
+    <string name="profile_config">"配置文件设置"</string>
+    <string name="delete">"删除"</string>
+    <string name="delete_confirm_prompt">"您确定要删除此配置文件？"</string>
+    <string name="share_qr_nfc">"二维码 / NFC"</string>
+    <string name="add_profile_dialog">"为影梭添加此配置文件？"</string>
+    <string name="add_profile_methods_scan_qr_code">"扫描二维码"</string>
+    <string name="add_profile_methods_manual_settings">"手动设置"</string>
+    <string name="add_profile_scanner_permission_required">"扫描二维码需要获得使用相机的权限。"</string>
+    <string name="undo">"撤销"</string>
+
+    <!-- status -->
+    <string name="connecting">"连接中…"</string>
+    <string name="vpn_connected">"已连接，点击测试连接"</string>
+    <string name="not_connected">"未连接"</string>
+
+    <string name="sent">"发送："</string>
+    <string name="received">"接收："</string>
+
+    <!-- misc -->
+    <string name="add_first_profile">目前还没有配置数据，你想现在添加吗？</string>
+    <string name="port_proxy">"SOCKS5 代理端口"</string>
+    <string name="port_local_dns">"本地 DNS 端口"</string>
+
+    <string name="quick_toggle">"开关"</string>
+    <string name="remote_dns">"远程 DNS"</string>
+    <string name="stat_summary">"上传: \t%3$s\t↑\t%1$s
+        下载: \t%4$s\t↓\t%2$s"
+    </string>
+    <string name="connection_test_pending">"检查连接"</string>
+    <string name="connection_test_testing">"测试中…"</string>
+    <string name="connection_test_available">"连接成功：HTTPS 握手延时 %d 毫秒"</string>
+    <string name="connection_test_error">"失败：%s"</string>
+    <string name="connection_test_fail">"无互联网连接"</string>
+    <string name="connection_test_error_status_code">"状态码无效（#%d）"</string>
+
+    <plurals name="removed">
+        <item quantity="one">已删除</item>
+        <item quantity="other">"已删除 %d 项"</item>
+    </plurals>
+</resources>

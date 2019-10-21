@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditTextPreference
+        app:key="profileName"
+        app:title="@string/profile_name"
+        app:useSimpleSummaryProvider="true" />
+
+    <PreferenceCategory app:title="@string/feature_cat">
+
+        <EditTextPreference
+            app:key="remoteDns"
+            app:icon="@drawable/ic_dns_black_24dp"
+            app:title="@string/remote_dns"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:key="isIpv6"
+            app:icon="@drawable/ic_looks_6_black_24dp"
+            app:summary="@string/ipv6_summary"
+            app:title="@string/ipv6" />
+        <SwitchPreference
+            app:key="isUdpDns"
+            app:icon="@drawable/ic_dns_black_24dp"
+            app:summary="@string/udp_dns_summary"
+            app:title="@string/udp_dns" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/proxy_cat">
+
+        <EditTextPreference
+            app:key="proxy"
+            app:icon="@drawable/ic_language_black_24dp"
+            app:singleLine="true"
+            app:title="@string/proxy"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="remotePortNum"
+            app:icon="@drawable/ic_device_hub_black_24dp"
+            app:title="@string/remote_port"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:dialogLayout="@layout/preference_dialog_password"
+            app:key="sitekey"
+            app:icon="@drawable/ic_vpn_key_black_24dp"
+            app:title="@string/sitekey" />
+        <DropDownPreference
+            app:key="encMethod"
+            app:icon="@drawable/ic_enhanced_encryption_black_24dp"
+            app:entries="@array/enc_method_entry"
+            app:entryValues="@array/enc_method_value"
+            app:title="@string/enc_method"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

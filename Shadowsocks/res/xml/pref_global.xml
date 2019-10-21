@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:initialExpandedChildrenCount="4">
+    <EditTextPreference
+        app:key="portProxy"
+        app:title="@string/port_proxy"
+        app:icon="@drawable/ic_device_hub_black_24dp"
+        app:useSimpleSummaryProvider="true" />
+
+    <EditTextPreference
+        app:key="portLocalDns"
+        app:icon="@drawable/ic_device_hub_black_24dp"
+        app:title="@string/port_local_dns"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreference
+        app:key="tcp_fastopen"
+        app:icon="@drawable/ic_flash_on_black_24dp"
+        app:summary="@string/tcp_fastopen_summary"
+        app:title="TCP Fast Open" />
+</PreferenceScreen>
