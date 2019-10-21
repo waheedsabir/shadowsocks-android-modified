@@ -5,9 +5,6 @@ apply plugin: 'kotlin-kapt'
 
 /**
  * Updated: 2019.10.20
- * TODO: Duplicated configurations are disallowed
- * TODO: The "Manual Settings" action can't be canceled
- * TODO: The About page
  */
 android {
     buildToolsVersion rootProject.buildToolsVersion
