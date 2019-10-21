@@ -125,6 +125,7 @@ BuildInfo updateBuildInfo() {
     def jsonBuildInfo
 
     if (fileBuildInfo.canRead()) {
+        // FIXME "Cannot resolve symbol JsonSlurper"
         jsonBuildInfo = new groovy.json.JsonSlurper().parseText(fileBuildInfo.text)
 
         // Update data to the current information
