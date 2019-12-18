@@ -62,8 +62,7 @@ object DataStore : OnPreferenceDataStoreChangeListener {
         set(value) = publicStore.putLong(Key.id, value)
     val canToggleLocked: Boolean get() = publicStore.getBoolean(Key.directBootAware) == true
     val directBootAware: Boolean get() = Core.directBootSupported && canToggleLocked
-    val tcpFastOpen: Boolean
-        get() = TcpFastOpen.sendEnabled && publicStore.getBoolean(Key.tfo, true)
+    val tcpFastOpen: Boolean get() = TcpFastOpen.sendEnabled && publicStore.getBoolean(Key.tfo, false)
     val listenAddress get() = "127.0.0.1"
     var portProxy: Int
         get() = getLocalPort(Key.portProxy, 1080)

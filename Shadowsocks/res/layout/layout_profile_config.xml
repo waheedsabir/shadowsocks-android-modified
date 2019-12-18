@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/content"
-        class="com.github.shadowsocks.ProfileConfigFragment"
+        android:name="com.github.shadowsocks.ProfileConfigFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
