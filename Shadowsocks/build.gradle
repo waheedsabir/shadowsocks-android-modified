@@ -23,8 +23,8 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
 
-        versionCode((buildInfo.Major << 22) | (buildInfo.Minor << 16) | (buildInfo.Revision << 10) | (buildInfo.Number & 0x3FF)) //10bit.6bit.6bit.10bit
-        versionName "${buildInfo.Major}.${buildInfo.Minor}.${buildInfo.Revision}-${buildInfo.Number}"
+        versionCode((BuildInfo.Major << 22) | (BuildInfo.Minor << 16) | (BuildInfo.Revision << 10) | (buildInfo.Number & 0x3FF)) //10bit.6bit.6bit.10bit
+        versionName "${BuildInfo.Major}.${BuildInfo.Minor}.${BuildInfo.Revision}-${buildInfo.Number}"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -115,9 +115,9 @@ repositories {
 
 // xinlake =========================================================================================
 class BuildInfo {
-    public int Major = 4 //10bit
-    public int Minor = 8 //6bit
-    public int Revision = 7 //6bit
+    public static int Major = 4 //10bit
+    public static int Minor = 8 //6bit
+    public static int Revision = 7 //6bit
 
     public int Number
     public String Time
